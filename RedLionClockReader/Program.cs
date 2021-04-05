@@ -8,7 +8,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 
-namespace RedLionClockReader
+namespace ClearEye.RedLionClockReader
 {
     public class Program
     {

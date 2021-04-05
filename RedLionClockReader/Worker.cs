@@ -7,7 +7,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 
-namespace RedLionClockReader
+namespace ClearEye.RedLionClockReader
 {
     public class Worker : BackgroundService
     {

@@ -1,5 +1,5 @@
 using System;
-namespace RedLionClockReader
+namespace ClearEye.RedLionClockReader
 {
     public static class ClockReaderFactory
     {

@@ -1,8 +1,8 @@
 ﻿using System;
 using System.IO.Ports;
-using RS232;
+using ClearEye.RS232;
 
-namespace RedLionClockReader
+namespace ClearEye.RedLionClockReader
 {
     public class Gemini2000ClockReader : IClockReader
     {

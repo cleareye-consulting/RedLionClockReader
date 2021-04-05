@@ -3,7 +3,7 @@ using System.Text;
 using Newtonsoft.Json;
 using System.Threading.Tasks;
 
-namespace RedLionClockReader
+namespace ClearEye.RedLionClockReader
 {
     public class ValueSender : IValueSender
     {

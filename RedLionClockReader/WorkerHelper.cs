@@ -1,7 +1,7 @@
 using System;
 using System.Threading.Tasks;
 
-namespace RedLionClockReader
+namespace ClearEye.RedLionClockReader
 {
     public class WorkerHelper
     {

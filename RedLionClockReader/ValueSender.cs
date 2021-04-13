@@ -23,6 +23,7 @@ namespace ClearEye.RedLionClockReader
         {
             var requestData = JsonConvert.SerializeObject(new { deviceId = deviceId, value = value });
             var response = await httpClient.PostAsync(endpoint, new StringContent(requestData, Encoding.UTF8, "application/json"));
+            response.EnsureSuccessStatusCode();
         }
 
 

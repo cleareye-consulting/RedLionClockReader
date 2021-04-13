@@ -21,13 +21,14 @@ namespace ClearEye.RedLionClockReader
             Host.CreateDefaultBuilder(args)
                 .ConfigureServices((hostContext, services) =>
                 {
-                    services.AddSingleton<IClockReader>(provider =>
-                        ClockReaderFactory.GetClockReader(hostContext.Configuration["DeviceModel"], hostContext.Configuration.GetValue<int>("DeviceAddress")));
+                    services.AddSingleton(provider =>
+                        ClockReaderFactory.GetClockReader(hostContext.Configuration["DeviceModel"], 
+                        hostContext.Configuration.GetValue<int>("DeviceAddress"), hostContext.Configuration["PortName"]));
                     var deviceId = hostContext.Configuration["deviceId"];
                     var endpoint = hostContext.Configuration["endpoint"];
                     services.AddSingleton<IValueSender>(provider => new ValueSender(deviceId, endpoint));
                     var refreshFrequency = TimeSpan.FromSeconds(hostContext.Configuration.GetValue<int>("RefreshFrequencyInSeconds"));
-                    services.AddHostedService<Worker>(provider => new Worker(
+                    services.AddHostedService(provider => new Worker(
                         provider.GetRequiredService<ILogger<Worker>>(),
                         provider.GetRequiredService<IClockReader>(),
                         provider.GetRequiredService<IValueSender>(),

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO.Ports;
+using System.Threading;
 using ClearEye.RS232;
 
 namespace ClearEye.RedLionClockReader
@@ -7,21 +8,20 @@ namespace ClearEye.RedLionClockReader
     public class Gemini2000ClockReader : IClockReader
     {
 
-        private const string portName = "COM1";
         private const int baudRate = 2400;
         private const Parity parity = Parity.Odd;
         private const int dataBits = 7;
         private const StopBits stopBits = StopBits.One;
-        private const bool isOverlappedRead = false;
+        private const bool isOverlappedRead = true;
 
         private readonly int clockAddress;
         private readonly ISerialConnection serialConnection;
 
-        public Gemini2000ClockReader(int clockAddress)
+        public Gemini2000ClockReader(int clockAddress, string portName)
         {
             this.clockAddress = clockAddress;
             serialConnection = SerialConnectionFactory.GetSerialConnection(portName, baudRate, parity, dataBits, stopBits, isOverlappedRead);
-            serialConnection.Open();
+            serialConnection.Open();            
         }
 
         public decimal Read()
@@ -48,7 +48,7 @@ namespace ClearEye.RedLionClockReader
             }
             //Not really clear what should be in 8 according to the docs
             char position9 = response[9];
-            bool isNegative = position9 == '-' ? false : position9 == ' ' ? true : throw new InvalidOperationException($"Expected '-' or blank, got '{position9}");
+            bool isNegative = position9 == '-' ? true : position9 == ' ' ? false : throw new InvalidOperationException($"Expected '-' or blank, got '{position9}");
             if (!(response[10] == ' '))
             {
                 throw new InvalidOperationException("Found value where blank space expected");

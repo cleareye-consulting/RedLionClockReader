@@ -34,6 +34,6 @@ namespace ClearEye.RedLionClockReader
                         provider.GetRequiredService<IValueSender>(),
                         refreshFrequency,
                         deviceId));
-                });
+                }).UseWindowsService();
     }
 }

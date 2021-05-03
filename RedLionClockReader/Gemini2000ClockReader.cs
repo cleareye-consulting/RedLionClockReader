@@ -12,7 +12,7 @@ namespace ClearEye.RedLionClockReader
         private const Parity parity = Parity.Odd;
         private const int dataBits = 7;
         private const StopBits stopBits = StopBits.One;
-        private const bool isOverlappedRead = true;
+        private const bool isOverlappedRead = false;
 
         private readonly int clockAddress;
         private readonly ISerialConnection serialConnection;
